@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head><title>Insert Page page</title></head>
+<style>
+.format{
+	color:rgb(50,47,90);
+	background-color:lightblue;
+	width:1000px;
+	margin:100px 70px 50px 70px;
+	height:450px;
+	box-shadow: 10px 10px rgb(50,47,90);
+	border-radius: 10px;
+ }
+ .container
+{
+	margin:0 auto;
+	width:1500px;
+	
+	}
+ .mycss{
+	color: green;
+    border:1px solid #000;
+    background:lightblue;
+    padding: 10px;
+	width:30%;
+	height:25px;
+	margin: 300px 0px 0px 0px;
+	
+}
+</style>
+<body><center> 
+ <?php
+ $conn = mysqli_connect("localhost", "root", "", "sportsmanagement");
+ if($conn === false){
+  die("ERROR: Could not connect. ". mysqli_connect_error());
+ }
+ $loginID = $_REQUEST['LoginID'];
+ $password = $_REQUEST['password'];
+  
+ $records = mysqli_query($conn,"select * from login");
+ $k=0;
+ while($data = mysqli_fetch_array($records))
+ {
+   if($loginID==$data['loginID'] && $password==$data['password']){
+      $k++;
+     
+	  echo "<a href='http://localhost/files/admin.php' target='_blank'>Click here to open ADMINISTRAION</a> </p>";
+	 
+      }
+   else{
+      continue;}  
+ } 
+ if($k==0){
+	 echo "<p> Access Denied </p>";
+   echo "Please re check your credentials";}
+ mysqli_close($conn);
+ ?>
+ </center>
+</body>
+</html
